@@ -35,7 +35,7 @@ class Img2Text {
 
 $Client = [Img2Text]::new("127.0.0.1:8000")
 
-$Result = $Client.RecognizeText("bitlocker.png")
+$Result = $Client.RecognizeText("$PSScriptRoot/bitlocker.png")
 Write-Output "Result: $Result"
 
 if ($Result -match "PIN") {
