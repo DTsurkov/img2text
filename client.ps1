@@ -10,10 +10,12 @@ class Img2Text {
             $Response = Invoke-RestMethod -Uri "http://$($this.Server)$Uri" -Method Post @Params
             if ($Response) {
                 return $Response
-            } else {
+            }
+            else {
                 throw "Error: No response from server"
             }
-        } catch {
+        }
+        catch {
             throw "Error: $($_.Exception.Message)"
         }
     }
@@ -23,8 +25,8 @@ class Img2Text {
             "Headers" = @{
                 "Content-Type" = "multipart/form-data"
             }
-            "Form" = @{
-                "file" = Get-Item -Path $ImgPath
+            "Form"    = @{
+                "file" = Get-Item -Path $ImgPath -ErrorAction Stop
             }
         }
         return $this.CallPost("/ocr", $Params).text
